@@ -53,6 +53,8 @@ class DomainmodelJvmModelInferrer extends AbstractModelInferrer {
 							for (p : f.params) {
 								parameters += p.toParameter(p.name, p.parameterType)
 							}
+							addAnnotations(f.annotations)
+
 							// here the body is implemented using a user expression.
 							// Note that by doing this we set the expression into the context of this method, 
 							// The parameters, 'this' and all the members of this method will be visible for the expression. 
@@ -65,6 +67,19 @@ class DomainmodelJvmModelInferrer extends AbstractModelInferrer {
 			// finally we want to have a nice toString methods.
 			members += entity.toToStringMethod(it)
 		]
+        accept(entity.toInterface( entity.fullyQualifiedName + "Api") [
+            for ( f : entity.features ) {
+                switch f {
+                    Operation : {
+                        // NullPointerException in CompilerTest.compareGeneratedJavaWithAnnotations()
+                        members += f.toMethod(f.name, f.type ?: inferredType) []
+                        
+                        // Works, but messes up the navigation making users of my plug-in mad!
+                        // members += entity.toMethod(f.name, f.type ?: inferredType) []
+                    }
+                }
+            }
+        ])
 	}
 	
 }

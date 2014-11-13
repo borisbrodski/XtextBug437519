@@ -31,7 +31,7 @@ class CompilerTest {
 				}
 			}
 		'''.compile [
-			val obj = it.compiledClass.newInstance
+			val obj = it.compiledClasses.get("Foo").newInstance
 			obj.invoke('setName', 'Foo')
 			assertEquals("Hello Foo", obj.invoke('doStuff','Hello'))
 		]
@@ -44,6 +44,10 @@ class CompilerTest {
 				name : String
 			}
 		'''.compile[assertEquals('''
+            MULTIPLE FILES WERE GENERATED
+            
+            File 1 : /myProject/src-gen/Foo.java
+            
 			import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 			import org.eclipse.xtext.xbase.lib.util.ToStringBuilder;
 			
@@ -72,9 +76,63 @@ class CompilerTest {
 			    return result;
 			  }
 			}
+            
+            File 2 : /myProject/src-gen/FooApi.java
+            
+            @SuppressWarnings("all")
+            public interface FooApi {
+            }
+            
 		'''.toString, getSingleGeneratedCode)
 		]
 	}
 	
+	@Test
+	def void compareGeneratedJavaWithAnnotations() {
+		'''
+			entity Foo {
+			    @SuppressWarnings("restriction")
+				op test()
+			}
+		'''.compile[
+		    assertEquals('''
+            MULTIPLE FILES WERE GENERATED
+            
+            File 1 : /myProject/src-gen/Foo.java
+            
+            import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
+            import org.eclipse.xtext.xbase.lib.util.ToStringBuilder;
+            
+            @SuppressWarnings("all")
+            public class Foo {
+              public Foo() {
+              }
+              
+              public Foo(final Procedure1<Foo> initializer) {
+                initializer.apply(this);
+              }
+              
+              @SuppressWarnings("restriction")
+              public Object test() {
+                return null;
+              }
+              
+              @Override
+              public String toString() {
+                String result = new ToStringBuilder(this).addAllFields().toString();
+                return result;
+              }
+            }
+            
+            File 2 : /myProject/src-gen/FooApi.java
+            
+            @SuppressWarnings("all")
+            public interface FooApi {
+              public Object test();
+            }
+            
+        '''.toString, getSingleGeneratedCode)
+        ]
+	}
 	
 }
