@@ -24,6 +24,8 @@ import org.eclipse.xtext.example.domainmodel.domainmodel.Operation;
 
 import org.eclipse.xtext.xbase.XExpression;
 
+import org.eclipse.xtext.xbase.annotations.xAnnotations.XAnnotation;
+
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Operation</b></em>'.
@@ -31,6 +33,7 @@ import org.eclipse.xtext.xbase.XExpression;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.eclipse.xtext.example.domainmodel.domainmodel.impl.OperationImpl#getAnnotations <em>Annotations</em>}</li>
  *   <li>{@link org.eclipse.xtext.example.domainmodel.domainmodel.impl.OperationImpl#getParams <em>Params</em>}</li>
  *   <li>{@link org.eclipse.xtext.example.domainmodel.domainmodel.impl.OperationImpl#getBody <em>Body</em>}</li>
  * </ul>
@@ -40,6 +43,16 @@ import org.eclipse.xtext.xbase.XExpression;
  */
 public class OperationImpl extends FeatureImpl implements Operation
 {
+  /**
+   * The cached value of the '{@link #getAnnotations() <em>Annotations</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getAnnotations()
+   * @generated
+   * @ordered
+   */
+  protected EList<XAnnotation> annotations;
+
   /**
    * The cached value of the '{@link #getParams() <em>Params</em>}' containment reference list.
    * <!-- begin-user-doc -->
@@ -79,6 +92,20 @@ public class OperationImpl extends FeatureImpl implements Operation
   protected EClass eStaticClass()
   {
     return DomainmodelPackage.Literals.OPERATION;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EList<XAnnotation> getAnnotations()
+  {
+    if (annotations == null)
+    {
+      annotations = new EObjectContainmentEList<XAnnotation>(XAnnotation.class, this, DomainmodelPackage.OPERATION__ANNOTATIONS);
+    }
+    return annotations;
   }
 
   /**
@@ -153,6 +180,8 @@ public class OperationImpl extends FeatureImpl implements Operation
   {
     switch (featureID)
     {
+      case DomainmodelPackage.OPERATION__ANNOTATIONS:
+        return ((InternalEList<?>)getAnnotations()).basicRemove(otherEnd, msgs);
       case DomainmodelPackage.OPERATION__PARAMS:
         return ((InternalEList<?>)getParams()).basicRemove(otherEnd, msgs);
       case DomainmodelPackage.OPERATION__BODY:
@@ -171,6 +200,8 @@ public class OperationImpl extends FeatureImpl implements Operation
   {
     switch (featureID)
     {
+      case DomainmodelPackage.OPERATION__ANNOTATIONS:
+        return getAnnotations();
       case DomainmodelPackage.OPERATION__PARAMS:
         return getParams();
       case DomainmodelPackage.OPERATION__BODY:
@@ -190,6 +221,10 @@ public class OperationImpl extends FeatureImpl implements Operation
   {
     switch (featureID)
     {
+      case DomainmodelPackage.OPERATION__ANNOTATIONS:
+        getAnnotations().clear();
+        getAnnotations().addAll((Collection<? extends XAnnotation>)newValue);
+        return;
       case DomainmodelPackage.OPERATION__PARAMS:
         getParams().clear();
         getParams().addAll((Collection<? extends JvmFormalParameter>)newValue);
@@ -211,6 +246,9 @@ public class OperationImpl extends FeatureImpl implements Operation
   {
     switch (featureID)
     {
+      case DomainmodelPackage.OPERATION__ANNOTATIONS:
+        getAnnotations().clear();
+        return;
       case DomainmodelPackage.OPERATION__PARAMS:
         getParams().clear();
         return;
@@ -231,6 +269,8 @@ public class OperationImpl extends FeatureImpl implements Operation
   {
     switch (featureID)
     {
+      case DomainmodelPackage.OPERATION__ANNOTATIONS:
+        return annotations != null && !annotations.isEmpty();
       case DomainmodelPackage.OPERATION__PARAMS:
         return params != null && !params.isEmpty();
       case DomainmodelPackage.OPERATION__BODY:

@@ -23,6 +23,8 @@ import org.eclipse.xtext.example.domainmodel.domainmodel.Property;
 
 import org.eclipse.xtext.xbase.XbasePackage;
 
+import org.eclipse.xtext.xbase.annotations.xAnnotations.XAnnotationsPackage;
+
 import org.eclipse.xtext.xtype.XtypePackage;
 
 /**
@@ -133,6 +135,7 @@ public class DomainmodelPackageImpl extends EPackageImpl implements DomainmodelP
     // Initialize simple dependencies
     XbasePackage.eINSTANCE.eClass();
     XtypePackage.eINSTANCE.eClass();
+    XAnnotationsPackage.eINSTANCE.eClass();
 
     // Create package meta-data objects
     theDomainmodelPackage.createPackageContents();
@@ -304,7 +307,7 @@ public class DomainmodelPackageImpl extends EPackageImpl implements DomainmodelP
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getOperation_Params()
+  public EReference getOperation_Annotations()
   {
     return (EReference)operationEClass.getEStructuralFeatures().get(0);
   }
@@ -314,9 +317,19 @@ public class DomainmodelPackageImpl extends EPackageImpl implements DomainmodelP
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getOperation_Body()
+  public EReference getOperation_Params()
   {
     return (EReference)operationEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getOperation_Body()
+  {
+    return (EReference)operationEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -370,6 +383,7 @@ public class DomainmodelPackageImpl extends EPackageImpl implements DomainmodelP
     propertyEClass = createEClass(PROPERTY);
 
     operationEClass = createEClass(OPERATION);
+    createEReference(operationEClass, OPERATION__ANNOTATIONS);
     createEReference(operationEClass, OPERATION__PARAMS);
     createEReference(operationEClass, OPERATION__BODY);
   }
@@ -401,6 +415,7 @@ public class DomainmodelPackageImpl extends EPackageImpl implements DomainmodelP
     // Obtain other dependent packages
     XtypePackage theXtypePackage = (XtypePackage)EPackage.Registry.INSTANCE.getEPackage(XtypePackage.eNS_URI);
     TypesPackage theTypesPackage = (TypesPackage)EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI);
+    XAnnotationsPackage theXAnnotationsPackage = (XAnnotationsPackage)EPackage.Registry.INSTANCE.getEPackage(XAnnotationsPackage.eNS_URI);
     XbasePackage theXbasePackage = (XbasePackage)EPackage.Registry.INSTANCE.getEPackage(XbasePackage.eNS_URI);
 
     // Create type parameters
@@ -435,6 +450,7 @@ public class DomainmodelPackageImpl extends EPackageImpl implements DomainmodelP
     initEClass(propertyEClass, Property.class, "Property", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(operationEClass, Operation.class, "Operation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getOperation_Annotations(), theXAnnotationsPackage.getXAnnotation(), null, "annotations", null, 0, -1, Operation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getOperation_Params(), theTypesPackage.getJvmFormalParameter(), null, "params", null, 0, -1, Operation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getOperation_Body(), theXbasePackage.getXExpression(), null, "body", null, 0, 1, Operation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

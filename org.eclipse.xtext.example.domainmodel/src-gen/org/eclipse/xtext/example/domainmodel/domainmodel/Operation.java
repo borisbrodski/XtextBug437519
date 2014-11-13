@@ -8,6 +8,8 @@ import org.eclipse.xtext.common.types.JvmFormalParameter;
 
 import org.eclipse.xtext.xbase.XExpression;
 
+import org.eclipse.xtext.xbase.annotations.xAnnotations.XAnnotation;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Operation</b></em>'.
@@ -16,6 +18,7 @@ import org.eclipse.xtext.xbase.XExpression;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.eclipse.xtext.example.domainmodel.domainmodel.Operation#getAnnotations <em>Annotations</em>}</li>
  *   <li>{@link org.eclipse.xtext.example.domainmodel.domainmodel.Operation#getParams <em>Params</em>}</li>
  *   <li>{@link org.eclipse.xtext.example.domainmodel.domainmodel.Operation#getBody <em>Body</em>}</li>
  * </ul>
@@ -27,6 +30,22 @@ import org.eclipse.xtext.xbase.XExpression;
  */
 public interface Operation extends Feature
 {
+  /**
+   * Returns the value of the '<em><b>Annotations</b></em>' containment reference list.
+   * The list contents are of type {@link org.eclipse.xtext.xbase.annotations.xAnnotations.XAnnotation}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Annotations</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Annotations</em>' containment reference list.
+   * @see org.eclipse.xtext.example.domainmodel.domainmodel.DomainmodelPackage#getOperation_Annotations()
+   * @model containment="true"
+   * @generated
+   */
+  EList<XAnnotation> getAnnotations();
+
   /**
    * Returns the value of the '<em><b>Params</b></em>' containment reference list.
    * The list contents are of type {@link org.eclipse.xtext.common.types.JvmFormalParameter}.

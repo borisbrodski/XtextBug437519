@@ -307,13 +307,22 @@ public interface DomainmodelPackage extends EPackage
   int OPERATION__TYPE = FEATURE__TYPE;
 
   /**
+   * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int OPERATION__ANNOTATIONS = FEATURE_FEATURE_COUNT + 0;
+
+  /**
    * The feature id for the '<em><b>Params</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int OPERATION__PARAMS = FEATURE_FEATURE_COUNT + 0;
+  int OPERATION__PARAMS = FEATURE_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Body</b></em>' containment reference.
@@ -322,7 +331,7 @@ public interface DomainmodelPackage extends EPackage
    * @generated
    * @ordered
    */
-  int OPERATION__BODY = FEATURE_FEATURE_COUNT + 1;
+  int OPERATION__BODY = FEATURE_FEATURE_COUNT + 2;
 
   /**
    * The number of structural features of the '<em>Operation</em>' class.
@@ -331,7 +340,7 @@ public interface DomainmodelPackage extends EPackage
    * @generated
    * @ordered
    */
-  int OPERATION_FEATURE_COUNT = FEATURE_FEATURE_COUNT + 2;
+  int OPERATION_FEATURE_COUNT = FEATURE_FEATURE_COUNT + 3;
 
 
   /**
@@ -491,6 +500,17 @@ public interface DomainmodelPackage extends EPackage
    * @generated
    */
   EClass getOperation();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.eclipse.xtext.example.domainmodel.domainmodel.Operation#getAnnotations <em>Annotations</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Annotations</em>'.
+   * @see org.eclipse.xtext.example.domainmodel.domainmodel.Operation#getAnnotations()
+   * @see #getOperation()
+   * @generated
+   */
+  EReference getOperation_Annotations();
 
   /**
    * Returns the meta object for the containment reference list '{@link org.eclipse.xtext.example.domainmodel.domainmodel.Operation#getParams <em>Params</em>}'.
@@ -670,6 +690,14 @@ public interface DomainmodelPackage extends EPackage
      * @generated
      */
     EClass OPERATION = eINSTANCE.getOperation();
+
+    /**
+     * The meta object literal for the '<em><b>Annotations</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference OPERATION__ANNOTATIONS = eINSTANCE.getOperation_Annotations();
 
     /**
      * The meta object literal for the '<em><b>Params</b></em>' containment reference list feature.
